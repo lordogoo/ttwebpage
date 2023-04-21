@@ -1,0 +1,16 @@
+<div>
+<h2>
+<%= title %>
+<button id="<%= page %><%= title %>TopBarButton" class="OpenCloseButton" onclick="openCloseButton('<%= page %><%= title %>TopBar','<%= page %><%= title %>TopBarButton')">
+<% if((locals.open)&&(open == true)){ %>
+	&#8744;
+<% }else{ %>
+	&#62;
+<% } %>
+</button>
+</h2>
+<hr>
+</div>
+<div <% if((!locals.open)||(open == false)){ %> style="display:none" <% } %>  id="<%= page %><%= title %>TopBar">
+	<%- section %>
+</div>

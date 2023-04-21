@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/header') %>
+  <body>
+    <div class="whitepanel">
+	<div>
+		Status: ready = <span id="ready"><%= (typeof post!= "undefined" ? post.ready : false ) %></span>
+		</br>
+		title:
+		</br>
+		<input id="title" onchange="textChanged()" type="text" value="<%= (typeof post!= "undefined" ? post.title : null ) %>"></input>
+		</br>
+		date:
+		</br>
+		<input id="date" onchange="textChanged()" type="date" value="<%= (typeof post!= "undefined" ? post.whendate : null ) %>"></input>
+		</br>
+		<textarea id="content" onchange="textChanged()" rows="10" cols="50"><%= (typeof post!= "undefined" ? post.content : null ) %></textarea>
+		</br>
+		<button id="save" onclick="saveClick()">Save</button>
+		<button id="preview" onClick="previewClick()">Preview</button>
+		<button id="deploy" onClick="deployClick()">deploy</button>
+		<button id="back" onClick="backClick()">Back</button>
+		</br>
+		<div id="message"></div>
+		
+	</div>
+    </div>
+  </body>
+</html>
+<script>
+let uuid = '<%= (typeof post!= "undefined" ? (typeof post.uuid != "undefined" ? post.uuid : null ) : null )  %>';
+let mode = '<%= mode %>';
+let username = '<%= username %>';
+let ready = <%= (typeof post!= "undefined" ? post.ready : false )%>;
+let saved = (uuid == ''? false : true);
+
+let save = document.getElementById("save");
+save.disabled = true;
+let preview = document.getElementById("preview");
+let deploy = document.getElementById("deploy");
+checkinputs();
+if(!saved){
+	preview.disabled = true;
+	deploy.disabled = true;
+	
+}
+
+function checkinputs(){
+	let title = document.getElementById("title");
+	let date = document.getElementById("date");
+	let contenttext = document.getElementById("content");
+	console.log(date.value);
+	if((title.value != '')&&(date.value != '')){
+		save.disabled = false;
+	}
+}
+
+function saveClick(){
+	let title = document.getElementById("title");
+	let date = document.getElementById("date");
+	let contenttext = document.getElementById("content");
+
+	let postObj = {
+		uuid: uuid,
+		username: username,
+    		title: title.value.trim(), 
+    		date: date.value,
+		content: contenttext.value,
+		ready: ready
+	};
+	let post = JSON.stringify(postObj);
+
+	let url = "crud";
+  	let xhttp = new XMLHttpRequest();
+	xhttp.withCredentials = true;
+	xhttp.onreadystatechange = function() {
+		if (this.responseText != ""){
+			let responsevalue = JSON.parse (this.responseText.replace(/\\/g,''));
+			console.log(responsevalue);
+
+			let message = document.getElementById("message");
+			message.innerHTML = responsevalue.message;
+		
+			if(responsevalue.uuid){
+				saved = true;
+				uuid = responsevalue.uuid;
+				mode = responsevalue.mode;
+
+				preview.disabled = false;
+				deploy.disabled = false;
+			}
+		}
+	}
+	xhttp.open('POST', url, true);
+	xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+	xhttp.send(post);
+}
+
+
+function backClick(){
+	window.location='/news/dashboard';
+}
+
+function previewClick(){
+	window.open('/news/preview?postid='+uuid, '_blank');
+}
+
+function deployClick(){
+	ready = !ready;
+	let readylabel = document.getElementById("ready");
+	readylabel.innerHTML = ready;
+	saveClick();
+}
+
+function textChanged(){
+	let message = document.getElementById("message");
+	message.innerHTML = "<font color='red'>Unsaved Changes</font>";
+	let savebutton = document.getElementById("save");
+	
+	checkinputs();
+}
+</script>

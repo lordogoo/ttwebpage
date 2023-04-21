@@ -1,0 +1,23 @@
+.ScreenShot{
+  width: 113px;
+  height: 200px;
+}
+
+.WideScreenShot{
+  width: 331px;
+  height: 200px;
+}
+
+.page-wrapper{
+	width: 100%;
+}
+
+.fill{
+	width: 100%;
+}
+
+
+.OpenCloseButton{
+    border: none;
+    background: none;
+}

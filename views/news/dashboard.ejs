@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/header') %>
+  <body>
+    <div class="whitepanel">
+	
+
+	<button onclick="logoutClick()">Logout</button>
+
+	</br>
+
+	<div>
+		<button onclick="newClick()">New</button>
+	</div>
+	<div>
+		<table>
+			<% if(Posts != undefined){ %>
+			  <% Posts.forEach(function(result){ %>
+				<tr id="<%= result.uuid %>">
+					<td><%= result.title %></td>
+					<td><%= result.whendate %></td>
+					<td><%= result.ready %></td>
+					<td><button onclick="editClick('<%= result.uuid %>')">Edit</button></td>
+					<td><button onclick="deleteClick('<%= result.uuid%>')">Delete</button></td>
+				</tr>
+			  <% }); %>
+			<% } %>			
+
+		</table>
+		<div id="message"></div>
+	</div>
+
+    </div>
+  </body>
+</html>
+<script>
+function logoutClick(){
+	let postObj = {
+		logout: true
+	};
+	let post = JSON.stringify(postObj);
+	let url = "exit"
+	let xhttp = new XMLHttpRequest();
+	xhttp.withCredentials = true;
+	xhttp.onreadystatechange = function() {
+        	if (this.readyState == 4 && this.status == 200) {
+			console.log(this.responseText);
+			let responsevalue = JSON.parse(this.responseText);
+			console.log(responsevalue);
+			if(responsevalue.message == "<font color='green'>Logout succesfull</font>"){
+				var allCookies = document.cookie.split(';');
+                		for (var i = 0; i < allCookies.length; i++){
+                    			document.cookie = allCookies[i] + "=;expires=" + new Date(0).toUTCString();
+				}
+				window.location='/news/login';
+			}
+       		}
+    	};
+  	xhttp.open('POST', url, true);
+	xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+	xhttp.send(post);
+}
+
+function newClick(){
+	window.location='/news/crud';
+}
+
+function editClick(uuid){
+	window.location='/news/crud?postid='+uuid;
+}
+
+function deleteClick(uuid){
+	let postObj = {
+		uuid: uuid
+	};
+	let post = JSON.stringify(postObj);
+
+	let url = "delete";
+  	let xhttp = new XMLHttpRequest();
+	xhttp.withCredentials = true;
+	xhttp.onreadystatechange = function() {
+		if (this.responseText != ""){
+			let responsevalue = JSON.parse (this.responseText.replace(/\\/g,''));
+			console.log(responsevalue);
+
+			let message = document.getElementById("message");
+			message.innerHTML = responsevalue.message;
+
+			if(responsevalue.message != "<font color='red'>Delete Error</font>"){
+				let tablerow = document.getElementById(uuid);	
+				if(tablerow){
+					tablerow.remove();
+				}
+			}
+		}
+	}
+	xhttp.open('POST', url, true);
+	xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+	xhttp.send(post);
+}
+</script>

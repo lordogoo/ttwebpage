@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../../partials/header') %>
+  <body>
+    <%- include('../../partials/topbar') %>
+	<center>
+<image src="../images/MathemagicianLogo.png"></image>
+</br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eWOGjn14knA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</br>
+</br>
+Slug it out online in algebraic combat. Create an equation to act as your defence then swap with an opponent and solve theirs first to win mathematical glory. If your having trouble brush up on your algibra skills with our list of challenge problems.Mathemagicians algibraic engine allows you to manipulate equations without having to maintain your mathematical notation by hand. If you have had trouble with math in the past try playing Mathemagician.
+</br>
+<a href="https://mathemagiciangame.com/">Mathemagician</a>
+</br>
+</br>
+<% ScreenShots.forEach(function(result){ %>
+	<image class="WideScreenShot" src="../images/Mathemagician/<%= result %>" ></image>
+<%  }); %>
+	</center>
+  </body>
+</html>
+<%- include('../../partials/footer') %>

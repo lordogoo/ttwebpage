@@ -1,0 +1,25 @@
+{
+  "name": "myexpressapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+	"deploy": "gh-pages -d ttgameswebpage"
+  },
+  "homepage": "https://lordogoo.github.io/ttwebpage",
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.17.3",
+    "gh-pages": "^5.0.0",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "node-sass": "^7.0.1",
+    "pg": "^8.7.3",
+    "puppeteer": "^19.8.0",
+    "sass": "^1.53.0"
+  }
+}

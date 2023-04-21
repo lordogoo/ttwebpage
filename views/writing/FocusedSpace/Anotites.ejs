@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../../partials/header') %>
+  <script src="../../javascripts/three.js"></script>
+  <script src="../../javascripts/GLTFLoader.js"></script>
+  <script src="../../javascripts/RotationDisplay.js"></script>
+  <link rel="stylesheet" href="../../stylesheets/slider.css">
+  <body>
+    <%- include('../../partials/topbar') %>
+	<style>
+td {
+   border-width: 3px;
+
+}
+	</style>
+	<center>
+		<h1>Anotites</h1>
+		<h4>Bio Technologicals</h4>
+		Walking 3d bio printers
+		</br>
+
+<div>
+	<canvas id="anotite" style="height: 400px;width: 800px"></canvas>
+</div>
+<div class="slidecontainer">
+	<input type="range" min="-40" max="40" value="0" class="slider" id="rotation">
+</div>
+
+<%- include('../../partials/section', {page: 'Anotites',title: 'Forms',section: "<h4>Anotites</h4>\nThe Anotites are a sentient race of robot terraformers. Created by an ancient alien race on a distant planet and sent to a new world at sub light speeds the anotites are cut off from their creators if they even exist anymore.\n</br>\nAnotites appear like a gray toaster oven with four spindly legs. Inside the toaster is a miniaturized production and processing mechanism. Anotites also have a miniature fission reactor that processes a myriad of nuclear material. They stand roughly two meters tall and fill a one meter square.\n<h2>Manipulation</h2>\nAnotites are able to print fire and forget organisms. All Anotites have a bank of possible bioforms that they can print. Bioforms exist for anything an Anotite could wish for. There are bioforms for mineral extaction, repairs, reproduction, construction, weapons, ect. All of these bioforms were programmed into the anotites by their creators.\n</br>\nJust to give some examples. The standard weapons platform for the anotites is an eel like creature that uses heleum to float through the air that is capable of shooting a lazer from a horn on its head. Its designed to be long so that it can wrap arround the anotite to block incoming fire. If it dies the anotite will just print another one. Usually Anotites has several of these creatures printed already before it enters combat to act as an ambush or to throw themselves into enemy fire to protect the Anotite.\n</br>\nFor mineral extraction Anotites print a seed which when it touches ground it burries itself. Later it grows into a tree which extracts nuclear material from the soil which it stores in its fruit which Anotites can eat to refuel themselves.\n</br>\nAnotite star ships are printed slowly in many parts. Anotites print these worm like organisms which self assemble themselves into their starships shape and then harden to form the hull.\n</br>\nAnotites arent riged in the make up of these bioforms and will experement by altering their genetic formula to try and find more efficient designs. Because of this Anotites love to find new organic life so they can disect and analize it just in case they can learn something from it for making better quality bioforms."}); -%>
+
+<%- include('../../partials/section', {page: 'Anotites',title: 'Manipulation',section: "Coming Soon"}); -%>
+
+<%- include('../../partials/section', {page: 'Anotites',title: 'Society',section: "Anotites are highly solitary and territorial. They use their terraforming capabilities to control and maintain large sections of land which acts an their domain. Anotites don't like it when other Anotites enter their domain. Anotites have the ability to communicate long distance via their printed bioforms. Via this long distant communication they do have a government and economy."}); -%>
+
+<%- include('../../partials/section', {page: 'Anotites',title: 'Factions',section: "Coming Soon"}); -%>
+
+<%- include('../../partials/section', {page: 'Anotites',title: 'Homeworld',section: "The Anotite homeworld was at one point a barren super earth in the goldilocks zone around their star but the Anotites have over time terraformed it into a world that can support them. This world would still be quite hostile for human life. Originally having a carbon dioxide atmosphere most of that has been converted to ozone."}); -%>
+
+<%- include('../../partials/section', {page: 'Anotites',title: 'Systems',section: "Coming Soon"}); -%>
+
+<%- include('../../partials/section', {page: 'Anotites',title: 'History',section: "Coming Soon"}); -%>
+
+	</center>
+
+  </body>
+</html>
+<%- include('../../partials/footer') %>
+<script>
+const modelurl = "../../anotite.glb";
+let Canvas = document.getElementById("anotite");
+let savedXPosition = 0;
+let savedYPosition = 1;
+let savedZPosition = -1;
+let savedXRotation = (0*Math.PI)/16;
+let savedYRotation = (8*Math.PI)/16;
+let savedZRotation = (1*Math.PI)/16;
+
+function setDefaults(model){
+		model.position.x = savedXPosition;
+		model.position.y = savedYPosition;
+		model.position.z = savedZPosition;
+		model.rotation.x = savedXRotation;
+		model.rotation.y = savedYRotation;
+		model.rotation.z = savedZRotation;
+}
+
+let rotationelement = document.getElementById("rotation");
+
+if(Canvas !== null){
+	let display = new RotationDisplay(Canvas,modelurl,setDefaults);
+	function animate() {
+		requestAnimationFrame( animate );
+		display.update(rotationelement,savedYRotation);
+	}
+	animate();
+}
+</script>

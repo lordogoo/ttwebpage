@@ -1,0 +1,689 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script src="helper.js"></script>
+<script src="stateMachine.js"></script>
+<link rel="stylesheet" href="steamAnimationUp.css" type="text/css"/>
+<link rel="stylesheet" href="steamAnimationDown.css" type="text/css"/>
+
+<link rel="stylesheet" href="door.css" type="text/css"/>
+<link rel="stylesheet" href="vent.css" type="text/css"/>
+<style>
+body {
+	background: url("./textures/brushmetalblue.png");
+}
+
+.doorPlateSideWidth{
+	width: 20px;
+}
+
+.doorPlateSideHeight{
+	height: 20px;
+}
+/* button Css Formatting */
+.openButton{
+	position: relative;
+	z-index:3;
+	width:100px;
+	height:100px;
+	top:150px;
+	left:300px;	
+	transform: translateX(-50%);
+}
+
+.openButtonFace{
+	width:100%;
+	height:100%;
+	background: linear-gradient(to left top,
+		  rgba(0, 0, 0, 0.1),
+          rgba(155, 155, 155, 0.2), 
+          rgba(0, 0, 0, 0.1)
+        ),url("./textures/redplastic.png");
+	border-radius: 50px;
+}
+
+.openButtonFace[disabled]{
+	width:100%;
+	height:100%;
+	background: linear-gradient(to left top,
+		  rgba(0, 0, 0, 0.1),
+          rgba(155, 155, 155, 0.2), 
+          rgba(0, 0, 0, 0.1)
+        ),url("./textures/whiteplastic.png");
+	border-radius: 50px;
+}
+
+/* warning strip Css Formatting */
+
+.warningStrip{
+	position: relative;
+	z-index:3;
+	border-radius: 25px;
+	background: linear-gradient(to left top,
+		  rgba(0, 0, 0, 0.1),
+          rgba(155, 155, 155, 0.2), 
+          rgba(0, 0, 0, 0.1)
+        ),url("./textures/warning.png");
+	background-size: 200px;
+	box-sizing: border-box;
+	border: 2px solid;
+}
+
+.stripBR1{
+	width:200px;
+	height:50px;
+	top:150px;
+	left:300px;
+	transform: translateX(-50%);
+}
+
+.stripBR2{
+	width:200px;
+	height:50px;
+	top:350px;
+	left:300px;
+	transform: translateX(-50%);
+}
+
+.stripBR3{
+	width:50px;
+	height:200px;
+	top:0px;
+	left:160px;
+	transform: translateX(-50%);
+}
+
+.stripBR4{
+	width:50px;
+	height:200px;
+	top:-200px;
+	left:440px;
+	transform: translateX(-50%);
+}
+
+.stripTL1{
+	width:200px;
+	height:50px;
+	top:850px;
+	left:900px;
+	transform: translateX(-50%);
+}
+
+.stripTL2{
+	width:200px;
+	height:50px;
+	top:950px;
+	left:900px;
+	transform: translateX(-50%);
+}
+
+/* steam Css Formatting */
+.steamD{
+	position: relative;
+	top: 60%;
+	left: 25%;
+	transform: translateX(-50%);
+	width:256px;
+	height:300px;
+	z-index:4;
+	background-size: 200px;
+}
+
+.steamDAnimation{
+	animation-name: steamDown;
+	animation-duration: 3s;
+}
+
+.steamU{
+	position: relative;
+	top: -12%;
+	left: 75%;
+	transform: translateX(-50%);
+	width:256px;
+	height:300px;
+	z-index:4;
+	background-size: 200px;
+}
+
+.steamUAnimation{
+	animation-name: steamUp;
+	animation-duration: 3s;
+}
+
+/* doors Css Formatting */
+.ventTR{
+	top:60%;
+	left:25%;
+	transform: translateX(-50%);
+}
+
+.ventBL{
+	top:25%;
+	left:75%;
+	transform: translateX(-50%);
+}
+
+/* doors Css Formatting */
+.doorTL{
+  margin: 0;
+  position: absolute;
+  display:block;
+  top: calc(50% - 1240px);
+  left: calc(50% - 1240px);
+  transform: translate(0%, 0%);
+}
+
+.doorTR{
+  margin: 0;
+  position: absolute;
+  display:block;
+  top: calc(50% - 1240px);
+  left: 50%;
+  transform: translate(0%, 0%);
+}
+
+.doorBL{
+  margin: 0;
+  position: absolute;
+  display:block;
+  top: 50%;
+  left: calc(50% - 1240px);
+  transform: translate(0%, 0%);
+}
+
+.doorBR{
+  margin: 0;
+  position: absolute;
+  display:block;
+  top: 50%;
+  left: 50%;
+  transform: translate(0%, 0%);
+}
+
+/* loading bar Css Formatting */
+.loadingBar{
+	position: relative;
+	top: 925px;
+	left: 900px;
+	width:256px;
+	height:50px;
+	background: radial-gradient(
+		  rgba(225, 255, 213, 1),
+          rgba(77, 77, 77, 1)
+        );
+	box-sizing: border-box;
+	border: 2px solid;
+	transform: translate(-50%, -50%);
+}
+
+/* door animation Css Formatting */
+
+@keyframes doorTLopen{
+0% {transform: translate(0%, 0%);}
+70% {transform: translate(-1%, -1%);}
+100% {transform: translate(-0.5%, -0.5%);}
+}
+
+.doorTLOpenAnimation{
+	animation-name: doorTLopen;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes doorTRopen{
+0% {transform: translate(0%, 0%);}
+70% {transform: translate(1%, -1%);}
+100% {transform: translate(0.5%, -0.5%);}
+}
+
+.doorTROpenAnimation{
+	animation-name: doorTRopen;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes doorBLopen{
+0% {transform: translate(0%, 0%);}
+70% {transform: translate(-1%, 1%);}
+100% {transform: translate(-0.5%, 0.5%);}
+}
+
+.doorBLOpenAnimation{
+	animation-name: doorBLopen;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes doorBRopen{
+0% {transform: translate(0%, 0%);}
+70% {transform: translate(1%, 1%);}
+100% {transform: translate(0.5%, 0.5%);}
+}
+
+.doorBROpenAnimation{
+	animation-name: doorBRopen;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes doorTLrun{
+0% {transform: translate(-0.5%, -0.5%);}
+100% {transform: translate(-100%, -100%);}
+}
+
+.doorTLRunAnimation{
+	animation-name: doorTLrun;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes doorTRrun{
+0% {transform: translate(0.5%, -0.5%);}
+100% {transform: translate(100%, -100%);}
+}
+
+.doorTRRunAnimation{
+	animation-name: doorTRrun;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes doorBLrun{
+0% {transform: translate(-0.5%, 0.5%);}
+100% {transform: translate(-100%, 100%);}
+}
+
+.doorBLRunAnimation{
+	animation-name: doorBLrun;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes doorBRrun{
+0% {transform: translate(0.5%, 0.5%);}
+100% {transform: translate(100%, 100%);}
+}
+
+.doorBRRunAnimation{
+	animation-name: doorBRrun;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+}
+
+#menu{
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  box-sizing: border-box;
+  border: 2px solid;
+  z-index: -4;
+}
+</style>
+</head>
+<body style="overflow: hidden;">
+
+<div id="doorGroup">
+
+<div id="doorTL" class="doorTL">
+<div class="door">
+<table class="doorPlate">
+	<tr class="doorPlateSideHeight">
+		<td class="doorPlateSideWidth">
+			<div class="plateCorner" >
+				<div class="doorTopLeftUD"></div>
+				<div class="doorTopLeftLR"></div>
+			</div>
+		</td>
+		<td>
+			<div class="doorTopCenter"></div>
+		</td>
+		<td class="doorPlateSideWidth">
+			<div class="plateCorner" >
+				<div class="doorTopRightUD"></div>
+				<div class="doorTopRightLR"></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div class="doorCenterLeft"></div>
+		</td>
+		<td>
+			<div class="plateCenter" >
+				<div class="doorCenterCenter"></div>
+				<div class="stripTL1 warningStrip"></div>
+				<div class="loadingBar">
+					<div id="LoadingBarLabel" style="text-align:center">Loading</div>
+					<div id="LoadingBar"></div>
+				</div>
+				<div class="stripTL2 warningStrip"></div>
+			<div>
+		</td>
+		<td>
+			<div class="doorCenterRight"></div>
+		</td>
+	</tr>
+	<tr class="doorPlateSideHeight">
+		<td>
+			<div class="plateCorner" >
+				<div class="doorBottomLeftUD"></div>
+				<div class="doorBottomLeftLR"></div>
+			</div>
+		</td>
+		<td>
+			<div class="doorBottomCenter"></div>
+		</td>
+		<td>
+			<div class="plateCorner" >
+				<div class="doorBottomRightUD"></div>
+				<div class="doorBottomRightLR"></div>
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="doorTR" class="doorTR">
+<div class="door">
+<table class="doorPlate">
+	<tr class="doorPlateSideHeight">
+		<td class="doorPlateSideWidth">
+			<div class="plateCorner" >
+				<div class="doorTopLeftUD"></div>
+				<div class="doorTopLeftLR"></div>
+			</div>
+		</td>
+		<td>
+			<div class="doorTopCenter"></div>
+		</td>
+		<td class="doorPlateSideWidth">
+			<div class="plateCorner" >
+				<div class="doorTopRightUD"></div>
+				<div class="doorTopRightLR"></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div class="doorCenterLeft"></div>
+		</td>
+		<td>
+			<div class="plateCenter" >
+				<div class="doorCenterCenter"></div>
+				<div class="warningStrip"></div>
+				<div class="ventTR vent">
+					<table class="ventPlate">
+						<tr class="doorPlateSideHeight">
+							<td class="doorPlateSideWidth" >
+								<div class="ventCorner" >
+									<div class="ventTopLeftUD"></div>
+									<div class="ventTopLeftLR"></div>
+								</div>
+							</td>
+							<td>
+								<div class="ventTopCenter"></div>
+							</td>
+							<td class="doorPlateSideWidth">
+								<div class="ventCorner" >
+									<div class="ventTopRightUD"></div>
+									<div class="ventTopRightLR"></div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="ventCenterLeft"></div>
+							</td>
+							<td>
+								<div class="ventCenterCenterDown"></div>
+							</td>
+							<td>
+								<div class="ventCenterRight"></div>
+							</td>
+						</tr>
+						<tr class="doorPlateSideHeight">
+							<td>
+								<div class="ventCorner" >
+									<div class="ventBottomLeftUD"></div>
+									<div class="ventBottomLeftLR"></div>
+								</div>
+							</td>
+							<td>
+								<div class="ventBottomCenter"></div>
+							</td>
+							<td>
+								<div class="ventCorner" >
+									<div class="ventBottomRightUD"></div>
+									<div class="ventBottomRightLR"></div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="steamD" class="steamD"></div>
+			<div>
+		</td>
+		<td>
+			<div class="doorCenterRight"></div>
+		</td>
+	</tr>
+	<tr class="doorPlateSideHeight">
+		<td>
+			<div class="plateCorner" >
+				<div class="doorBottomLeftUD"></div>
+				<div class="doorBottomLeftLR"></div>
+			</div>
+		</td>
+		<td>
+			<div class="doorBottomCenter"></div>
+		</td>
+		<td>
+			<div class="plateCorner" >
+				<div class="doorBottomRightUD"></div>
+				<div class="doorBottomRightLR"></div>
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="doorBL" class="doorBL">
+<div class="door">
+<table class="doorPlate">
+	<tr class="doorPlateSideHeight">
+		<td class="doorPlateSideWidth">
+			<div class="plateCorner" >
+				<div class="doorTopLeftUD"></div>
+				<div class="doorTopLeftLR"></div>
+			</div>
+		</td>
+		<td>
+			<div class="doorTopCenter"></div>
+		</td>
+		<td class="doorPlateSideWidth">
+			<div class="plateCorner" >
+				<div class="doorTopRightUD"></div>
+				<div class="doorTopRightLR"></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div class="doorCenterLeft"></div>
+		</td>
+		<td>
+			<div class="plateCenter" >
+				<div class="doorCenterCenter"></div>
+				<div class="warningStrip"></div>
+				<div class="ventBL vent">
+					<table class="ventPlate">
+						<tr class="doorPlateSideHeight">
+							<td class="doorPlateSideWidth" >
+								<div class="ventCorner" >
+									<div class="ventTopLeftUD"></div>
+									<div class="ventTopLeftLR"></div>
+								</div>
+							</td>
+							<td>
+								<div class="ventTopCenter"></div>
+							</td>
+							<td class="doorPlateSideWidth">
+								<div class="ventCorner" >
+									<div class="ventTopRightUD"></div>
+									<div class="ventTopRightLR"></div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="ventCenterLeft"></div>
+							</td>
+							<td>
+								<div class="ventCenterCenterUp"></div>
+							</td>
+							<td>
+								<div class="ventCenterRight"></div>
+							</td>
+						</tr>
+						<tr class="doorPlateSideHeight">
+							<td>
+								<div class="ventCorner" >
+									<div class="ventBottomLeftUD"></div>
+									<div class="ventBottomLeftLR"></div>
+								</div>
+							</td>
+							<td>
+								<div class="ventBottomCenter"></div>
+							</td>
+							<td>
+								<div class="ventCorner" >
+									<div class="ventBottomRightUD"></div>
+									<div class="ventBottomRightLR"></div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="steamU" class="steamU"></div>
+			<div>
+		</td>
+		<td>
+			<div class="doorCenterRight"></div>
+		</td>
+	</tr>
+	<tr class="doorPlateSideHeight">
+		<td>
+			<div class="plateCorner" >
+				<div class="doorBottomLeftUD"></div>
+				<div class="doorBottomLeftLR"></div>
+			</div>
+		</td>
+		<td>
+			<div class="doorBottomCenter"></div>
+		</td>
+		<td>
+			<div class="plateCorner" >
+				<div class="doorBottomRightUD"></div>
+				<div class="doorBottomRightLR"></div>
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="doorBR" class="doorBR">
+<div class="door">
+<table class="doorPlate">
+	<tr class="doorPlateSideHeight">
+		<td class="doorPlateSideWidth">
+			<div class="plateCorner" >
+				<div class="doorTopLeftUD"></div>
+				<div class="doorTopLeftLR"></div>
+			</div>
+		</td>
+		<td>
+			<div class="doorTopCenter"></div>
+		</td>
+		<td class="doorPlateSideWidth">
+			<div class="plateCorner" >
+				<div class="doorTopRightUD"></div>
+				<div class="doorTopRightLR"></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div class="doorCenterLeft"></div>
+		</td>
+		<td>
+			<div class="plateCenter" >
+				<div class="doorCenterCenter"></div>
+				<div class="stripBR1 warningStrip"></div>
+				<div class="stripBR2 warningStrip"></div>
+				<div class="openButton"><button id="openButton" disabled onClick="globalThis.stateMachine.currentState.activate('open')" class="openButtonFace">Open</button></div>
+				<div class="stripBR3 warningStrip"></div>
+				<div class="stripBR4 warningStrip"></div>
+			<div>
+		</td>
+		<td>
+			<div class="doorCenterRight"></div>
+		</td>
+	</tr>
+	<tr class="doorPlateSideHeight">
+		<td>
+			<div class="plateCorner" >
+				<div class="doorBottomLeftUD"></div>
+				<div class="doorBottomLeftLR"></div>
+			</div>
+		</td>
+		<td>
+			<div class="doorBottomCenter"></div>
+		</td>
+		<td>
+			<div class="plateCorner" >
+				<div class="doorBottomRightUD"></div>
+				<div class="doorBottomRightLR"></div>
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div id="menu">
+Hello<br>
+Thanks for using the door.<br>
+
+<a href="../tools">Return to the site.</a>
+</div>
+
+<script>
+forceScrollTop();
+
+const audioLibrary = new Map();
+audioLibrary.set("button",new Audio("./sound/zapsplat_household_alarm_clock_button_press_12967.mp3"));
+audioLibrary.set("steam",new Audio("./sound/zapsplat_foley_air_puncture_air_release_hiss_001_64477.mp3"));
+audioLibrary.set("open",new Audio("./sound/zapsplat_household_garage_door_metal_attempt_to_lift_but_locked_002_12204.mp3"));
+audioLibrary.set("grind",new Audio("./sound/zapsplat_household_garage_door_roller_close_hard_vibrate_wobble_002_37941.mp3"));
+
+
+globalThis.stateMachine = new stateMachine(document,audioLibrary);
+
+
+
+function animate() {
+
+	globalThis.stateMachine.currentState.update();
+
+	requestAnimationFrame( animate );
+};
+animate();
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../../partials/header') %>
+  <script src="../../javascripts/three.js"></script>
+  <script src="../../javascripts/GLTFLoader.js"></script>
+  <link rel="stylesheet" href="../../stylesheets/slider.css">
+  <body>
+    <%- include('../../partials/topbar') %>
+	<style>
+td {
+   border-width: 3px;
+
+}
+	</style>
+	<center>
+		<h1>The Great Culture of the Eye</h1>
+		</br>
+
+<%- include('../../partials/section', {page: 'Eye',title: 'Description',section: "The Great Culture of the Eye has members who are able to disern truth from looking intently at the cosmos. Unlike the other cultures their eyes cannot be deceived. Most Eye cultures are polytheistic and have many legends of gods that use their eyes to see the truth beyond the sight of others. Some eye cultures are even able to see the future."}); -%> 
+
+<%- include('../../partials/section', {page: 'Eye',title: 'Technology',section: "People of the great culture of the eye use mostly weapons and tools that other species would consider primitive. Outwordly they haven't advanced past the early medieval era. This could make people think they are primitive but this is far from the case. Most eye cultures are able to create crystals called eye stones. These devices are capable of making arrows move incredibly fast and make blades able to cut through dense metal. Eye stones can also be imbedded in ships to make them fly and go to space. Eye Cultures are best known for their tactics in combat and their ability to pull out a victory even with inferior weapons and numbers."}); -%>
+
+<%- include('../../partials/section', {page: 'Eye',title: 'Races',section: "<h4>Oculons</h4>\nOculons are considered the paragons of the great culture of the eye. They look like a nub that walks using many tenticles. They have one large eye with six smaller eyes arround it in a hexigon. Oculons are able to see the emotions of any race even if they are hiding it. Because of this they are strong negociators."}); -%>
+
+	</center>
+  </body>
+</html>
+<%- include('../../partials/footer') %>

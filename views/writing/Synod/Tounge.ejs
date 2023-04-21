@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../../partials/header') %>
+  <script src="../../javascripts/three.js"></script>
+  <script src="../../javascripts/GLTFLoader.js"></script>
+  <link rel="stylesheet" href="../../stylesheets/slider.css">
+  <body>
+    <%- include('../../partials/topbar') %>
+	<style>
+td {
+   border-width: 3px;
+
+}
+	</style>
+	<center>
+		<h1>The Great Culture of the Tounge</h1>
+		</br>
+
+<%- include('../../partials/section', {page: 'Tounge',title: 'Description',section: "The Great Culture of the Tounge has members who are able to disern truth using language,logic, and facts. Unlike the other cultures their arguments can be checked for errors. Most Tounge cultures are monotheistic. They construct large libraries filled with data which they use to store many facts and have a tendency to follow their books very litteraly."}); -%> 
+
+<%- include('../../partials/section', {page: 'Tounge',title: 'Technology',section: "People of the great culture of the tounge use advanced technologies and are able to build almost anything they can set their mind to. Advanced weapons like guns and lazers are able to be created by tounge cultures. Also tounge cultures have a tendecy to build space ships like we see in other sci-fi."}); -%>
+
+<%- include('../../partials/section', {page: 'Tounge',title: 'Races',section: "<h4>Utterlons</h4>\nUtterlons are considered the paragons of the great culture of the Tounge. They are blob like creatures with a face and two hands. Utterlongs are able to create any number of mouths they need to be able to communicate. Utterlons are great educators and can use their words to convey more information than other races."}); -%>
+
+	</center>
+  </body>
+</html>
+<%- include('../../partials/footer') %>

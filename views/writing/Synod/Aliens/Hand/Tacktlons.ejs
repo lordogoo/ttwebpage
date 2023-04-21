@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../../partials/header') %>
+  <script src="../../javascripts/three.js"></script>
+  <script src="../../javascripts/GLTFLoader.js"></script>
+  <link rel="stylesheet" href="../../stylesheets/slider.css">
+  <body>
+    <%- include('../../partials/topbar') %>
+	<style>
+td {
+   border-width: 3px;
+
+}
+	</style>
+	<center>
+		<h1>Tacktlons</h1>
+		</br>
+
+<%- include('../../partials/section', {page: 'Tacktlons',title: 'Description',section: "Tacktlons are skinny humanoids that look human other than they havae large hands and ears in the shape of hands."}); -%> 
+
+<%- include('../../partials/section', {page: 'Tacktlons',title: 'Society',section: "Tacktlon society is split into two casts. There is the agricultural class and the religious class.<br>The farming class has little power or influence and mostly consists of simple people with a medieval level of technology who farm. Farmers are about as strong as standard humans and toil by day in the feilds and at night eat food and have small parties. Dispite the lack of technology the farming class of tacktlons are not without food and resources and are mostly without want. This is mostly due to the interventions of the religious class.<br>The religious class consists mostly of monks who have trained themselves in a martial art called the tremmor sense. The tremmor sense allows the religious class to mold rock into complex shapes and to modify the terrain of their world.  Over time the tacktlon monks have modified their world to maximize its farming potential. The tremmor sense is so useful that some monks have used it to construct stone space ships capable of traviling the stars."}); -%>
+
+
+<%- include('../../partials/section', {page: 'Tacktlons',title: 'Homeworld',section: ""}); -%>
+
+<%- include('../../partials/section', {page: 'Tacktlons',title: 'Technology',section: ""}); -%>
+
+<%- include('../../partials/section', {page: 'Tacktlons',title: 'History',section: ""}); -%>
+
+	</center>
+  </body>
+</html>
+<%- include('../../partials/footer') %>

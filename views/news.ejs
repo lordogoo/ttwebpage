@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <%- include('./partials/header') %>
+  <link rel="stylesheet" href="../stylesheets/particles.css">
+  <link rel="stylesheet" href="../stylesheets/retract.css">
+  <body>
+    <%- include('./partials/topbar') %>
+
+	<% if(typeof posts != 'undefined'){ %>
+		<% for(let i = 0; i < posts.length; i++) { %>
+		   <div style="margin-top:10px">
+    			<div class="whiteplate" style="width:75%;margin: 0 auto;display: block;">
+				<div>
+					<h1><%= posts[i].title %></h1>
+					</br>
+					by <%= posts[i].userName %>
+					</br>
+					<%= posts[i].whendate %>
+					</br>
+					<hr></hr>
+					</br>
+					<div>
+					<%- posts[i].content %>
+					</div>
+				</div>
+
+			</div>
+		  </div>
+		<% } %>
+	<% } %>
+
+	<center>
+	    
+	    <a href="/news?page=1">&#12298;</a>
+	    
+	    <% if(pagenumber-1 > 0){ %>
+		<a href="/news?page=<%= pagenumber-1 %>"><%= pagenumber-1 %></a>
+	    <% } %>
+	    <%= pagenumber %>
+	    <% if(pagenumber+1 <= count){ %>
+		<a href="/news?page=<%= pagenumber+1 %>"><%= pagenumber+1 %></a>
+	    <% } %>
+
+	    <a href="/news?page=<%= count %>">&#12299;</a>
+	</center>
+  </body>
+</html>
+<%- include('./partials/footer') %>

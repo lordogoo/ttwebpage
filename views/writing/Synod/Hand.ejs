@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../../partials/header') %>
+  <script src="../../javascripts/three.js"></script>
+  <script src="../../javascripts/GLTFLoader.js"></script>
+  <link rel="stylesheet" href="../../stylesheets/slider.css">
+  <body>
+    <%- include('../../partials/topbar') %>
+	<style>
+td {
+   border-width: 3px;
+
+}
+	</style>
+	<center>
+		<h1>The Great Culture of the Hand</h1>
+		</br>
+
+<%- include('../../partials/section', {page: 'Hand',title: 'Description',section: "The Great Culture of the Hand has members who are able to disern truth from feeling dilibratly and intently. Unlike the other cultures their feelings cannot be deceived. Most Hand cultures are pantheistic and practice intence meditation."}); -%> 
+
+<%- include('../../partials/section', {page: 'Hand',title: 'Technology',section: "People of the great culture of the hand in general use very little material objects. There is a big difference between monks and regular citizens of the culture of the hand. Citizens will have some technology. Monks on the other hand can train themselves to be able to survive in any enviornment. Its also the case that monks can train themselves to go to space and to travel the stars."}); -%>
+
+<%- include('../../partials/section', {page: 'Hand',title: 'Races',section: "<h4>Tacktlons</h4>\nTacktlons are considered the paragons of the great culture of the hand. They are skinny tall humanoids that have large hands and ears shapped like hands. They are powerful marshal artists and can syncronize their feelings with materials arround them to cause eathquakes."}); -%>
+
+	</center>
+  </body>
+</html>
+<%- include('../../partials/footer') %>

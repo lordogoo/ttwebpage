@@ -1,0 +1,16 @@
+<div class="linksbar">
+<div class="category">
+Games
+<button id="gameTopBarButton" class="OpenCloseButton" onclick="openCloseButtonWithCookie('gameTopBar','gameTopBarButton')">&#8744;</button>
+</div>
+<div class="links" id="gameTopBar" onload="selectElement()">
+  <a id="gameshomelink" href="/games">Home</a>
+  <span>:</span>
+  <a id="CombatSwaplink" href="/games/CombatSwap">Combat Swap</a>
+  <a id="SpiritsOfTheJarlink" href="/games/SpiritsOfTheJar">Spirits Of The Jar</a>
+  <a id="Mathemagicianlink" href="/games/Mathemagician">Mathemagician</a>
+</div>
+</div>
+<script>
+openCloseLoadWithCookie('gameTopBar','gameTopBarButton');
+</script>

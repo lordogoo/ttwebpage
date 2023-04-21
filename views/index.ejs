@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+  <%- include('./partials/header') %>
+  <script src="javascripts/three.js"></script>
+  <script src="javascripts/GLTFLoader.js"></script>
+  <link rel="stylesheet" href="stylesheets/particles.css">
+  <link rel="stylesheet" href="stylesheets/retract.css">
+<style>
+.downarrow{
+    bottom: 120px;
+    right: 50%;
+    left: 50%;
+    position: absolute;
+}
+.triangle {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #f00;
+    
+}
+.trianglecontainer{
+    text-align: center;
+    width: 60px;
+    height: 30px;
+}
+.triangle1{
+animation: mymove1 5s infinite;
+}
+.triangle2{
+animation: mymove2 5s infinite;
+}
+.triangle3{
+animation: mymove3 5s infinite;
+}
+@keyframes mymove1 {
+  0%   {
+	    	border-left: 20px solid transparent;
+    	    	border-right: 20px solid transparent;
+	    	border-top: 20px solid #f00;
+	}
+  16%  {
+		border-left: 30px solid transparent;
+    	    	border-right: 30px solid transparent;
+		border-top: 30px solid #f00;
+	}
+  33% {
+		border-left: 20px solid transparent;
+    	    	border-right: 20px solid transparent;
+		border-top: 20px solid #f00;
+	}
+  100% {
+		border-left: 20px solid transparent;
+    	    	border-right: 20px solid transparent;
+		border-top: 20px solid #f00;
+	}
+}
+@keyframes mymove2 {
+  0%   {
+	    	border-left: 20px solid transparent;
+    	    	border-right: 20px solid transparent;
+	    	border-top: 20px solid #f00;
+	}
+  33%   {
+	    	border-left: 20px solid transparent;
+    	    	border-right: 20px solid transparent;
+	    	border-top: 20px solid #f00;
+	}
+  49%  {
+		border-left: 30px solid transparent;
+    	    	border-right: 30px solid transparent;
+		border-top: 30px solid #f00;
+	}
+  66% {
+		border-left: 20px solid transparent;
+    	    	border-right: 20px solid transparent;
+		border-top: 20px solid #f00;
+	}
+  100% {
+		border-left: 20px solid transparent;
+    	    	border-right: 20px solid transparent;
+		border-top: 20px solid #f00;
+	}
+}
+@keyframes mymove3 {
+  0%   {
+	    	border-left: 20px solid transparent;
+    	    	border-right: 20px solid transparent;
+	    	border-top: 20px solid #f00;
+	}
+
+  66% {
+		border-left: 20px solid transparent;
+    	    	border-right: 20px solid transparent;
+		border-top: 20px solid #f00;
+	}
+  82%  {
+		border-left: 30px solid transparent;
+    	    	border-right: 30px solid transparent;
+		border-top: 30px solid #f00;
+	}
+  100% {
+		border-left: 20px solid transparent;
+    	    	border-right: 20px solid transparent;
+		border-top: 20px solid #f00;
+	}
+}
+</style>
+  <body>
+    <%- include('./partials/topbar') %>
+    <div style="height: 100vh;position: relative;">
+    	<canvas id="overlay" style="position: fixed;left: 0;top: 0;z-index: 8;pointer-events: none;height: 100%;width: 100%" ></canvas>
+
+    	<center><image id="ttlogo" src="images/TopplingTitanLogoShadow.png"></image></center>
+    	<center><h1><%= title %></h1></center>
+    	<center><p>Hello my name is Mark Nicoll and I'm a small time developer and game designer. This is my web page. Have fun.</p></center>
+    	<div class="downarrow">
+		<div class="trianglecontainer"><div class="triangle triangle1"></div></div>
+		<div class="trianglecontainer"><div class="triangle triangle2"></div></div>
+		<div class="trianglecontainer"><div class="triangle triangle3"></div></div>
+    	</div>
+    </div>
+    <hr></hr>
+    <div id="CombatSwapArea">
+	<div class="page-bg"></div>
+
+	<div class="animation-wrapper">
+  		<div class="particle particle-1"></div>
+  		<div class="particle particle-2"></div>
+  		<div class="particle particle-3"></div>
+  		<div class="particle particle-4"></div>
+	</div>
+
+	<div class="page-wrapper"> 
+
+		<table>
+		<tr>
+		<td>
+  		<div class="revealLeft">
+			<table>
+			<tr>
+			<td>
+				<div class="whiteplate">
+					<a href="games/CombatSwap"><image src="images/CombatSwapLogo.png"></image></a>
+				</div>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<div class="whiteplate">
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/0HXKWbOaJOQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+			</td>
+			</tr>
+			</table>
+
+		</div>
+		</td>
+		<td>
+		<div class="revealRight">
+			<div class="whiteplate" style="max-width:70%;">
+				<div class="ScreenShotContainer">
+					<span class="ScreenShotList">
+						<% ScreenShots[0].forEach(function(result){ %>
+							<image class="ScreenShot" src="images/CombatSwap/<%= result %>" ></image>
+						<%  }); %>
+					</span>
+				</div>
+				<div>
+					<center>
+						<h3>Description</h3>
+					   Combat Swap is an arcade-style game where a band of adventurers fights hordes of monsters in close quarters combat. Swapping these warriors to match the colors of their enemies is the key to defeating them.
+					</center>
+				</div>
+			</div>
+		</div>
+		</td>
+		</tr>
+		</table>
+	</div>
+
+    </div>
+    <hr></hr>
+    <div id="CombatSwapArea">
+	<div class="page-bg"></div>
+
+	<div class="animation-wrapper">
+  		<div class="particle particle-1"></div>
+  		<div class="particle particle-2"></div>
+  		<div class="particle particle-3"></div>
+  		<div class="particle particle-4"></div>
+	</div>
+
+	<div class="page-wrapper">
+		<table class="fill">
+		<tr>
+		<td>
+  		<div class="revealLeft">
+			<table>
+			<tr>
+			<td>
+				<div class="whiteplate">
+					<a href="games/Mathemagician"><image src="images/MathemagicianLogo.png"></image></a>
+				</div>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<div class="whiteplate">
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/eWOGjn14knA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+			</td>
+			</tr>
+			</table>
+		</div>
+		</td>
+		<td>
+		<div class="revealRight">
+			<div class="whiteplate" style="max-width:70%;">
+				<div class="ScreenShotContainer">
+					<span class="ScreenShotList">
+						<% ScreenShots[1].forEach(function(result){ %>
+							<image class="WideScreenShot" src="images/Mathemagician/<%= result %>" ></image>
+						<%  }); %>
+					</span>
+				</div>
+				<div>
+					<center>
+						<h3>Description</h3>
+					   Slug it out online in algebraic combat. Create an equation to act as your defence then swap with an opponent and solve theirs first to win mathematical glory. If your having trouble brush up on your algibra skills with our list of challenge problems.Mathemagicians algibraic engine allows you to manipulate equations without having to maintain your mathematical notation by hand. If you have had trouble with math in the past try playing Mathemagician.
+
+<a href="https://mathemagiciangame.com/">Mathemagician</a>
+					</center>
+				</div>
+			</div>
+		</div>
+		</td>
+		</tr>
+		</table>
+	</div>
+
+    </div>
+
+    <hr></hr>
+    <div id="CombatSwapArea">
+	<div class="page-bg"></div>
+
+	<div class="animation-wrapper">
+  		<div class="particle particle-1"></div>
+  		<div class="particle particle-2"></div>
+  		<div class="particle particle-3"></div>
+  		<div class="particle particle-4"></div>
+	</div>
+
+	<div class="page-wrapper">
+		<table class="fill">
+		<tr>
+		<td>
+  		<div class="revealLeft whiteplate">
+			<image src="images/SpiritsLogo.png"></image>
+		</div>
+		</td>
+		<td>
+		<div class="revealRight">
+			<div class="whiteplate" style="max-width:70%;">
+				<div>
+					<center>
+						<h3>Coming Soon</h3>
+					</center>
+				</div>
+			</div>
+		</div>
+		</td>
+		</tr>
+		</table>
+	</div>
+
+    </div>
+
+
+
+  </body>
+</html>
+<%- include('./partials/footer') %>
+<script>
+/*********************************************
+*style code
+**********************************************/
+function reveal() {
+  var reveals = document.querySelectorAll(".revealLeft, .revealRight")
+  for (var i = 0; i < reveals.length; i++) {
+    var windowHeight = window.innerHeight;
+    var elementTop = reveals[i].getBoundingClientRect().top;
+    var elementVisible = 150;
+    if (elementTop < windowHeight - elementVisible) {
+      reveals[i].classList.add("active");
+    } else {
+      reveals[i].classList.remove("active");
+    }
+  }
+}
+/*********************************************
+*image modal code
+**********************************************/
+
+
+/*********************************************
+*three js code
+**********************************************/
+let pageSize = screen.height+window.innerHeight;
+let scrollPosition = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+let scrollPercent = (scrollPosition / pageSize) * 100;
+
+console.log(pageSize);
+function scrollUpdateTitan(){
+	scrollPosition = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+	scrollPercent = (scrollPosition / pageSize) * 100;
+	if((titanModel != null)&&(titanModel != undefined)){
+		if((falling == false)&&(primed == false)&&(scrollPercent < 1)){
+			primed = true;
+		}
+		if((falling == false)&&(primed == true)&&(scrollPercent >= 5)){
+			falling = true;
+			primed = false;
+		}
+		if((falling == true)&&(Math.abs(savedY) > (pageSize)/10)&&(scrollPercent > 10)){
+			falling = false;
+			setDefaults();
+		}
+	}
+}
+
+
+const titanurl = "titan.glb";
+let overlayCanvas = document.getElementById("overlay");
+let overlayScene;
+let overlayCamera;
+let overlayRenderer;
+let gltfLoader;
+let titanModel;
+let savedY = 0;
+let savedYDelta = 0;
+let savedYRotation = 0;
+let savedZRotation = 0;
+let primed = true;
+let falling = false;
+function setDefaults(){
+		titanModel.position.x = -7;
+		titanModel.position.y = 21;
+		titanModel.position.z = -40;
+		titanModel.rotation.x = (6*Math.PI)/16;
+		titanModel.rotation.y = (2*Math.PI)/16;
+		titanModel.rotation.z = (-2*Math.PI)/16;
+		
+		savedYDelta = 0;
+		savedY = titanModel.position.y;
+		savedYRotation = titanModel.rotation.y;
+		savedZRotation = titanModel.rotation.z;
+}
+
+function test(a){
+     console.log(a,savedY);
+}
+
+function init(){
+	anim.to(titanModel.position, {y: 100, easing: Power1.easeInOut, scrollTrigger: {
+    		trigger: document.body,
+		start: "top top",
+		end: pageSize,
+		onUpdate: test,
+    		scrub: 1,
+	}}, 0);
+}
+
+if(overlayCanvas !== null){
+	overlayScene = new THREE.Scene();
+	overlayCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+	const frustum = new THREE.Frustum();
+	frustum.setFromProjectionMatrix( overlayCamera.projectionMatrix );
+	frustum.setFromProjectionMatrix(new THREE.Matrix4().multiplyMatrices(overlayCamera.projectionMatrix, overlayCamera.matrixWorldInverse));
+
+	overlayRenderer = new THREE.WebGLRenderer({ canvas: overlayCanvas, alpha: true });
+	overlayRenderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( overlayRenderer.domElement );
+
+	const overlayLight = new THREE.PointLight(0xffffff);
+	overlayLight.position.set(5,5,5);
+	overlayScene.add(overlayLight);
+	
+	const overlayAmbient = new THREE.AmbientLight(0xffffff,0.5);
+	overlayScene.add(overlayAmbient);
+
+	overlayCamera.position.z = 5;
+
+	gltfLoader = new THREE.GLTFLoader();
+
+	gltfLoader.load(titanurl, (gltf) => {
+		titanModel = gltf.scene;
+		setDefaults();
+		scrollUpdateTitan();
+		//init();
+		overlayScene.add(titanModel);
+	});
+
+	function animate() {
+		requestAnimationFrame( animate );
+		
+		if(titanModel != null){
+			if(falling == true){
+				savedYDelta += 0.5
+				savedY -= savedYDelta;
+				savedYRotation -= (Math.PI/16);
+				savedZRotation -= (Math.PI/16);
+			}
+			titanModel.position.y = savedY + ((scrollPercent/100)*pageSize)/10;
+			titanModel.rotation.y = savedYRotation;
+			titanModel.rotation.z = savedZRotation;
+		}
+		overlayRenderer.render( overlayScene, overlayCamera);
+	}
+
+	animate();
+	
+}
+/*********************************************
+*listeners
+**********************************************/
+function doScroll(){
+	reveal();
+	scrollUpdateTitan();
+}
+
+window.addEventListener("scroll", doScroll);
+</script>

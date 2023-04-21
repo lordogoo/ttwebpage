@@ -1,0 +1,39 @@
+.revealLeft{
+  position: relative;
+  transform: translateX(-353px);
+  opacity: 0;
+  transition: 2s all ease;
+}
+.revealLeft.active{
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.revealRight{
+  position: relative;
+  transform: translateX(353px);
+  opacity: 0;
+  transition: 2s all ease;
+}
+.revealRight.active{
+  transform: translateX(0);
+  opacity: 1;
+}
+.whiteplate{
+  margin: 50px;
+  padding: 10px;
+  background-color: white;
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
+  border-width: 4px;
+  box-shadow: 10px 10px 5px lightblue;
+  display: inline-block;
+}
+.ScreenShotContainer{
+  overflow-x:scroll;
+  overflow-y:visible;
+}
+.ScreenShotList{
+  white-space: nowrap;
+}

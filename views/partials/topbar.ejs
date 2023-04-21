@@ -1,0 +1,65 @@
+<div onload="selectElement()" class="topnav">
+  <div class="toplinks">
+    <a id="homelink" href="/">Home</a>
+    <a id="newslink" href="/news">News</a>
+    <a id="gameslink" href="/games">Games</a>
+    <a id="writinglink" href="/writing">Writing</a>
+    <a id="toolslink" href="/tools">Tools</a>
+    <a id="aboutlink" href="/about">About</a>
+  </div>
+  <% let numspace = 1 %>
+  <% if(typeof submenu != 'undefined') { %>
+	<%- include('./'+submenu+'bars/'+submenu+'topbar')  %>
+	<% numspace++ %>
+  <% } %>
+  <% if(typeof subsubmenu != 'undefined') { %>
+	<%- include('./'+submenu+'bars/'+subsubmenu+'topbar')  %>
+	<% numspace++ %>
+  <% } %>
+  <div class="category"></div>
+</div>
+
+<script>
+	let currentPathname = window.location.pathname;
+	const indexes = [];
+	for (let i = 0; i < currentPathname.length; i++) {
+  		if (currentPathname[i] === '/') {
+    			indexes.push(i);
+  		}
+	}
+	let pathName = [];
+	if(indexes.length == 0){
+		pathName.push("home");
+	}else if(indexes.length == 1){
+		let pathname = currentPathname.substring(indexes[0]+1);
+		if(pathname == ""){
+			pathName.push("home");
+		}else{
+			pathName.push(currentPathname.substring(indexes[0]+1));
+			pathName.push(currentPathname.substring(indexes[0]+1)+"home");
+		}
+	}else{
+		for(let i = 0; i < indexes.length; i++){
+			if(i < indexes.length - 1){
+				pathName.push(currentPathname.substring(indexes[i]+1,indexes[i+1]));
+			}else{
+				pathName.push(currentPathname.substring(indexes[i]+1));
+				pathName.push(currentPathname.substring(indexes[i]+1)+'home');
+			}
+		}
+	}
+	
+
+	for(let i = 0; i < pathName.length; i++){
+		let componentId = pathName[i]+"link";
+		let component = document.getElementById(componentId);
+		if(component != null){
+			component.classList.add("active");
+		}
+	}
+</script>
+<% for(let i = 0; i < numspace;i++) { %>
+</br>
+</br>
+</br>
+<% } %>

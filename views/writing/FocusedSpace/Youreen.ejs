@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../../partials/header') %>
+  <script src="../../javascripts/three.js"></script>
+  <script src="../../javascripts/GLTFLoader.js"></script>
+  <script src="../../javascripts/RotationDisplay.js"></script>
+  <link rel="stylesheet" href="../../stylesheets/slider.css">
+  <body>
+    <%- include('../../partials/topbar') %>
+	<style>
+td {
+   border-width: 3px;
+
+}
+	</style>
+	<center>
+		<h1>Youreen</h1>
+		<h4>Crysto Biologicals</h4>
+		Cephilopods that read the bones.
+		</br>
+<div>
+	<canvas id="youreen" style="height: 400px;width: 800px"></canvas>
+</div>
+<div class="slidecontainer">
+	<input type="range" min="-40" max="40" value="0" class="slider" id="rotation">
+</div>
+
+<%- include('../../partials/section', {page: 'Youreen',title: 'Forms',section: '<h4>Youreen</h4>\nThe Youreen are an octopus like race with six tentacles. The Youreen have several pouches on their tentacles which they can use to take in temporary bones for the use of walking above the water in very shallow water. These bones are also etched with instructions as to how to preform their job.'}); -%> 
+
+<%- include('../../partials/section', {page: 'Youreen',title: 'Manipulation',section: "The Youreen are incredibly good at chemistry and material sciences. They construct their ships, tools and buildings our of ceramics.\n<h4>ships</h4>\nLooking like a failed art protect in a pottery class the Youreen ships are quite striking. Their ships are made out of high impact semi flexible ceramics.\n<h4>structures</h4>\nThe Youreen construct cities in the shallows out of hardened sand.\n<h4>Hand Weapons</h4>\nThe Youreen mostly use ceramic pressure guns. These guns take in a semi flexible ceramic slug that's shapes in such a way that when put under pressure and hit from behind it shoots out an incredible high velocity ceramic slug.\n<h4>space survival</h4>\nIn space the Youreen have a power suit constructed out of glass that looks like a fishbowl with stilts.\n<h4>Missing</h4>\nThe Youreen lack in a couple areas. They have no robots, drones or artificial intelligence."}); -%>
+
+<%- include('../../partials/section', {page: 'Youreen',title: 'Society',section: 'The Youreen society is based around guilds. Each member of Youreen society has a specialization based on what job they do and is a member of a guild based on said job. Guilds organize themselves via a counsel of master workers which votes on policy.\n</br>\nThe Youreen can be described as anarcho-mercantilism given that there is no overarching Youreen government outside the guilds themselves.'}); -%> 
+
+<%- include('../../partials/section', {page: 'Youreen',title: 'Factions',section: 'In the past the Youreen have not been unified namely on the issue about what factions have the right to exist.\n<h4>Guild Supremacists</h4>\nProbibly the oldest faction. Guild Supremacists believe that the most important entity in Youreen society is the guilds and that guilds should do anything to survive. This includes causing harm to other Youreen.\n<h4>Guild Purists</h4>\nGuild Purists believe only the guilds that universally help other Youreen have the right to exist. Therefore Guilds like the thieves guild and marauders guild should be eliminated from Youreen society.'}); -%>
+	
+<%- include('../../partials/section', {page: 'Youreen',title: 'Homeworld',section: 'The Youreen homeworld is a mostly ocean planet. There are small lifeless volcanic islands but they are rare. Around the islands are large shallow oceans. Everywhere else there are deep oceans.\n</br>\nTwo types of life evolved on this world. In the shallows carbon based biological life evolved. In the deep oceans silicon based life evolved.\n</br>\nThe Youreen homeworld is quite close to a gas giant. Said gas giant has a large asteroid ring. In the past this caused asteroids to fall onto the Youreen homeworld periodically. These asteroid strikes caused world wide tsunamis.'}); -%>
+
+<%- include('../../partials/section', {page: 'Youreen',title: 'Systems',section: "<h4>Wath</h4>\nStable Yellow Star\n</br>\n1)Small Hot Barron\n</br>\n2)Medium Temperate Oceanic\n</br>\nYoureen homeworld.\n</br>\n4)Mega Gas Giant\n</br>\n4.1)Asteroid Ring\n</br>\nColonized 2170: large scale mining operations gathering clay.\n</br>\n5)Icy Body Field\n</br>\nColonized 2210: large scale mining operations gathering water.\n<h4>Herth</h4>\nStable Red Dwarf\n</br>\n1)Small Hot Barron\n</br>\n2)Small temperate Barron\n</br>\nColonized 2380: Domes established on the surface and water ice was melted to form large scale settlements.\n</br>\n3)Large Cold Barron\n</br>\nColonized 2650: Radiation shield was moved into orbit allowing for domed colonization.\n</br>\n4)Asteroid Belt\n</br>\nColonized 2440: Asteroid mining for clay and water.\n</br>\n<h4>Parth</h4>\nStable Yellow Star\n</br>\n1)Small Hot Barron\n</br>\n2)Small Temperate Ocean\n</br>\nColoninzed 2730: The waters of this planet have an extremely high salt content. Wide scale desalination allowed for colonization.\n</br>\n3)Large Temperate Barron\n</br>\n4)Large Cold Barron\n</br>\n5)Large Gas Giant\n</br>\n6)Mega Gas Giant\n</br>\n6.3)Medium Cold Ice Moon\n</br>\nColonized 2581: The planet has a icy surface with subsurface ocean. The ocean had good conditions for the Youreen and was drilled down to for habitation.\n</br>\n7)Icy Body Field\n</br>\nColonized 2547: mining colony and habitation established as a jumping off point for colonizing the system."}); -%>
+
+<%- include('../../partials/section', {page: 'Youreen',title: 'History',section: "The Youreen have for thousands of years have tried to establish a civilization but been unable to. They have constructed large cities in the shallows of their home world but every few centuries an asteroid crashed into their planet causing world wide tsunamis. These tsunamis made civilization impossible for about a hundred years. The Youreen spent most of their time building civilization and then being reset.\n<\br>\nOn 2100, after the oceans stabilized again, the Youreen began their first permanent civilization. This civilization would go to space and start intercepting asteroids before they hit the surface of their homeworld.\n<h4>First Contact</h4>\nOn 3127 A large fleet of space ships ftls a few systems away from the Youreen homeworld. The fleet starts making a beeline for the Youreen homeworld. The Youreen, after a couple of years of attempted communications, are able to decode the alien language. The aliens are the Rabani've and after a long period of negotiations its noted that the Youreen don't have a government and are for the most part peaceful therefore there would be no resistance to the Rabani've moving into their system as long as they are also peaceful. Also in the Youreen system there is a planet colonizable by the Rabani've which the Youreen can't live on.\n<\br>\nThe Rabani've are ecological preservers and given that the Youreen have no government they decide that they can fill in a need and provide benefits to the Youreen by trying to integrate with their society. They then peacefully colonize the empty planet.\n<\br>\nThe Youreen establish a xeno negotiation guild to negotiate with the Rabani've. The Youreen find out very quickly that the Rabani've despite being a mechanical race have a wish to eat and like the taste of a particular strain of kelp that had no use up until this point. Because of this the Youreen begin farming this kelp in mass and a new guild is formed to trade this kelp with the rabani've. The Rabani've outlaw the consumption of this kelp but a black market erupts that continues the trade of this material.\n<\br>\nDespite the attempt to limit the trade of the kelp the Rabani've succumb and most of their society becomes consumed by it. The Youreen begin threatening the ecology of their worlds with the high production of the kelp.\n<\br>\nThese factors cause the Youreen to trigger the guild supremacy faction and the kelp farming and trading guild is designated a guild that is causing harm and the Youreen descend into sectarian violence. The Rabani've distrubed as to how they could have caused more harm than good to these aliens decide to leave.\n<\br>\nAfter the Rabani've leave the kelp production guild quickly goes bankrupt and is folded. the Youreen return to peaceful normalcy.\n<h4>Second Contact</h4>\nComing Soon"}); -%>
+
+	</center>
+
+  </body>
+</html>
+<%- include('../../partials/footer') %>
+<script>
+let modelurl = "../../youreen.glb";
+let Canvas = document.getElementById("youreen");
+let savedXPosition = 0;
+let savedYPosition = 1;
+let savedZPosition = -3;
+let savedXRotation = (0*Math.PI)/16;
+let savedYRotation = (-8*Math.PI)/16;
+let savedZRotation = (-1*Math.PI)/16;
+
+function setDefaults(model){
+		model.position.x = savedXPosition;
+		model.position.y = savedYPosition;
+		model.position.z = savedZPosition;
+		model.rotation.x = savedXRotation;
+		model.rotation.y = savedYRotation;
+		model.rotation.z = savedZRotation;
+}
+
+let rotationelement = document.getElementById("rotation");
+
+if(Canvas !== null){
+	let display = new RotationDisplay(Canvas,modelurl,setDefaults);
+	function animate() {
+		requestAnimationFrame( animate );
+		display.update(rotationelement,savedYRotation);
+	}
+	animate();
+}
+</script>

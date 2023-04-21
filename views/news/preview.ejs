@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/header') %>
+  <body>
+    <div class="whitepanel">
+	<div>
+		<h1><%= post.title %></h1>
+		</br>
+		by <%= post.username %>
+		</br>
+		<%= post.whendate %>
+		</br>
+		<hr></hr>
+		</br>
+		<div>
+			<%- post.content %>
+
+		</div>
+
+	</div>
+   </div>
+  </body>
+</html>

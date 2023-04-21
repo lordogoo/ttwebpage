@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../../partials/header') %>
+  <body>
+    <%- include('../../partials/topbar') %>
+	<center><image src="../images/CombatSwapLogo.png"></image></center>
+	<center>
+</br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0HXKWbOaJOQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</br>
+</br>
+It's a tale as old as RPGs: an extremely guilt-ridden plastic figurine and their friends must cross the countryside while defeating a horde of monsters. Only with the help of a deft finger will these heroes be able to swap their way to victory.
+</br>
+Combat Swap is an arcade-style game where a band of adventurers fights hordes of monsters in close quarters combat. Swapping these warriors to match the colors of their enemies is the key to defeating them.
+</br>
+</br>
+<% CombatSwapScreenShots.forEach(function(result){ %>
+	<image class="ScreenShot" src="../images/CombatSwap/<%= result %>" ></image>
+<%  }); %>
+</br>
+</br>
+Get the game here:
+</br>
+<a href="https://play.google.com/store/apps/details?id=com.gmail.lordogoo.combatswap">Combat Swap</a>
+</br>
+</br>
+<a href="/games/CombatSwapPrivacyPolicy">Privacy Policy</a>
+        </center>
+  </body>
+</html>
+<%- include('../../partials/footer') %>

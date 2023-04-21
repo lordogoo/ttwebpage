@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/header') %>
+  <body>
+    <div class="whitepanel">
+	<center>
+		<h1>Create New User</h1>
+		User Name:
+		</br>
+		<input id="user" type="text"></input>
+		</br>
+		Email:
+		</br>
+		<input id="email" type="text"></input>
+		</br>
+		Password:
+		</br>
+		<input id="pwd" type="password"></input>
+		</br>
+		<div id="message"></div>
+		</br>
+		<button id="submit" onClick="CreateClick()">Submit</button>
+	</center>
+    </div>
+  </body>
+</html>
+<script>
+function DisableInputs(value){
+	document.getElementById("user").disabled = value;
+	document.getElementById("email").disabled = value;
+	document.getElementById("pwd").disabled = value;
+}
+
+function DisableButtons(value){
+	document.getElementById("submit").disabled = value;
+}
+
+function CreateClick(){
+	DisableButtons(true);
+	DisableInputs(true);
+	let message = document.getElementById("message");
+	let user = document.getElementById("user");
+	let password = document.getElementById("pwd");
+	let email = document.getElementById("email");
+
+	let postObj = { 
+    		username: user.value.trim(), 
+    		password: password.value.trim(), 
+    		email: email.value.trim() 
+	}
+	let post = JSON.stringify(postObj);
+
+	let url = "newuser"
+  	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+        	if (this.readyState == 4 && this.status == 200) {
+			let responsevalue = JSON.parse (this.responseText);
+            		message.innerHTML = responsevalue.message;
+			if(responsevalue.message == "<font color='green'>User succesfully created</font>"){
+				document.cookie = "session="+responsevalue.session
+				HandleNavigate("Login.htm");
+			}else{
+				DisableButtons(false);
+				DisableInputs(false);
+			}
+       		}
+    	};
+  	xhttp.open('POST', url, true)
+	xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+	xhttp.send(post);
+}
+</script>
